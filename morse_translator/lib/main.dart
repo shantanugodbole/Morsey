@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:morse_translator/screens/home.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final String url =  "https://api.funtranslations.com/translate/morse.json?text=Hello World";
+  final String url =
+      "https://api.funtranslations.com/translate/morse.json?text=Hello World";
 
   // This widget is the root of your application.
   @override
@@ -15,7 +16,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       home: HomePage(),
+      debugShowCheckedModeBanner: false,
+      color: Colors.blue,
+      theme: ThemeData(
+          accentColor: Color(0xFF442C2E), backgroundColor: Color(0xFFFEDBD0)),
     );
   }
 }
-

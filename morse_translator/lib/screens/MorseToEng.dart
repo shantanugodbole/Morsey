@@ -9,7 +9,20 @@ class _MorseToEngState extends State<MorseToEng> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text("Translate Morse to English!"),
+      child: Column(
+        children: [
+          Text("Translate from Morse to English"),
+          Text("Input in Morse"),
+          TextField(
+            autocorrect: true,
+          ),
+          Text("Decoded message!"),
+          RaisedButton(
+            onPressed: () {},
+            child: Text("Share"),
+          ),
+        ],
+      ),
     );
   }
 }
