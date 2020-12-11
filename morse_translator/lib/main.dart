@@ -8,7 +8,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final String url =
-      "https://api.funtranslations.com/translate/morse.json?text=Hello World";
+      "http://api.funtranslations.com/translate/morse.json?text=Hello World";
 
   // This widget is the root of your application.
   @override

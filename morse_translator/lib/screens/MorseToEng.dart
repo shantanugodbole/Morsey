@@ -13,9 +13,9 @@ class _MorseToEngState extends State<MorseToEng> {
         children: [
           Text("Translate from Morse to English"),
           Text("Input in Morse"),
-          TextField(
-            autocorrect: true,
-          ),
+          // TextField(
+          //   autocorrect: true,
+          // ),
           Text("Decoded message!"),
           RaisedButton(
             onPressed: () {},
