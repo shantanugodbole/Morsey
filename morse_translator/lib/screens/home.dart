@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import './EngToMorse.dart';
 import './MorseToEng.dart';
 // import '../services/api.dart';
@@ -33,15 +34,15 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            // height: MediaQuery.of(context).size.height / 4,
+            height: MediaQuery.of(context).size.height / 4,
             // padding: EdgeInsets.all(20),
             alignment: Alignment.center,
             child: Text(
               "Morsey",
-              style: TextStyle(
-                  color: Colors.brown,
-                  fontSize: 56,
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.permanentMarker(
+                  color: Color(0xFF442C2E),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 72),
             ),
           ),
           Container(
@@ -50,19 +51,24 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.fromLTRB(0, 0, 0, 100),
             child: Text(
               "Share information secretly!",
-              style: TextStyle(fontSize: 32),
+              style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 40),
+              // style: TextStyle(
+              //   fontSize: 32,
+              //   color: Color(0xFF442C2E),
+              // ),
               textAlign: TextAlign.center,
             ),
           ),
           Container(
+            margin: EdgeInsets.all(20),
             child: Text(
               "Morsapp is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
-              style: TextStyle(fontSize: 20),
+              style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 32),
               textAlign: TextAlign.center,
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 16,
+            height: MediaQuery.of(context).size.height / 8,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -77,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: Text(
                   "English -> Morse",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -91,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 child: Text(
                   "Morse -> English",
-                  style: TextStyle(fontSize: 20),
+                  style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 28),
                   textAlign: TextAlign.center,
                 ),
               )

@@ -28,6 +28,7 @@ dependencies:
   cupertino_icons: ^0.1.3
   share: ^0.6.5+4
   clipboard_manager: ^0.0.4
+  google_fonts: ^1.1.1
 
 dev_dependencies:
   flutter_test:

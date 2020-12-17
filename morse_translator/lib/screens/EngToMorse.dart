@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import '../services/api.dart';
+// import '../services/api.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
+import 'package:share/share.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class EngToMorse extends StatefulWidget {
   @override
@@ -8,16 +10,16 @@ class EngToMorse extends StatefulWidget {
 }
 
 class _EngToMorseState extends State<EngToMorse> {
-  // String inputText = "";
+  String inputText = "";
   final myController = TextEditingController();
   var url =
       "http://api.funtranslations.com/translate/morse.json?text=Hello World";
 
   @override
   void initState() {
-    final apiCaller = GetData();
-    var response = apiCaller.getData(url);
-    print(response);
+    // final apiCaller = GetData();
+    // var response = apiCaller.getData(url);
+    // print(response);
     // var decodedResponse = jsonDecode(response)['contents']['translated'];
     // print(decodedResponse.toString());
     super.initState();
@@ -36,7 +38,10 @@ class _EngToMorseState extends State<EngToMorse> {
               child: Text(
                 "Translate from English to Morse",
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 30),
+                style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 42),
+                // style: TextStyle(
+                //   fontSize: 30,
+                //   color: Color(0xFF442C2E),
               ),
             ),
             Container(
@@ -64,8 +69,12 @@ class _EngToMorseState extends State<EngToMorse> {
             RaisedButton(
               onPressed: () {},
               child: Text(
-                "Encode!",
-                style: TextStyle(fontSize: 22),
+                "Encode",
+                style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
+                // style: TextStyle(
+                //   fontSize: 22,
+                //   color: Color(0xFF442C2E),
+                // ),
               ),
               color: Color(0xFFFEDBD0),
               shape: RoundedRectangleBorder(
@@ -99,40 +108,76 @@ class _EngToMorseState extends State<EngToMorse> {
             ),
             RaisedButton(
               onPressed: () {
-                ClipboardManager.copyToClipBoard(myController.text)
-                    .then((result) {
-                  final snackBar = SnackBar(
-                    content: Text('Copied to Clipboard'),
-                    action: SnackBarAction(
-                      label: 'Undo',
-                      onPressed: () {},
-                    ),
-                  );
-                  Scaffold.of(context).showSnackBar(snackBar);
-                });
+                inputText = myController.text;
+                ClipboardManager.copyToClipBoard(myController.text);
+                myController.text = "Message copied to clipboard!";
+                // showSnackBar();
               },
               child: Text(
                 "Copy",
-                style: TextStyle(fontSize: 22),
+                style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
+                // style: TextStyle(
+                //   fontSize: 22,
+                //   color: Color(0xFF442C2E),
+                // ),
               ),
               color: Color(0xFFFEDBD0),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(300, 75, 5, 20),
-              child: RaisedButton(
-                onPressed: () {},
-                child: Text(
-                  "Share",
-                  style: TextStyle(fontSize: 22),
+            SizedBox(
+              height: 50,
+            ),
+            Row(
+              // mainAxisSize: MainAxisSize.values[0],
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Container(
+                  // padding: EdgeInsets.fromLTRB(300, 90, 5, 20),
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Back",
+                      style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
+                      // style: TextStyle(
+                      //   fontSize: 22,
+                      //   color: Color(0xFF442C2E),
+                      // ),
+                    ),
+                    color: Color(0xFFFEDBD0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
-                color: Color(0xFFFEDBD0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
+                Container(
+                  // padding: EdgeInsets.fromLTRB(300, 90, 5, 20),
+                  child: RaisedButton(
+                    onPressed: () {
+                      if (inputText.isEmpty) {
+                        throw ErrorDescription("Cannot share null message");
+                      } else {
+                        Share.share(inputText);
+                      }
+                    },
+                    child: Text(
+                      "Share",
+                      style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
+                      // style: TextStyle(
+                      //   fontSize: 22,
+                      //   color: Color(0xFF442C2E),
+                      // ),
+                    ),
+                    color: Color(0xFFFEDBD0),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ],
         ),
