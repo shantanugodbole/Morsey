@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
             // padding: EdgeInsets.all(20),
             alignment: Alignment.center,
             child: Text(
-              "Morsapp",
+              "Morsey",
               style: TextStyle(
                   color: Colors.brown,
                   fontSize: 56,
@@ -56,10 +56,14 @@ class _HomePageState extends State<HomePage> {
           ),
           Container(
             child: Text(
-                "Morsapp is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
-                style: TextStyle(fontSize: 20), textAlign: TextAlign.center,),
+              "Morsapp is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
+              style: TextStyle(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
           ),
-          SizedBox(height: MediaQuery.of(context).size.height/16,),
+          SizedBox(
+            height: MediaQuery.of(context).size.height / 16,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
