@@ -19,9 +19,8 @@ class _EngToMorseState extends State<EngToMorse> {
   void translateToMorse() async {
     var url = "http://api.funtranslations.com/translate/morse.json?text=" +
         inputController.text;
-    print(url);
     var response = await object.getData(url);
-    print(response);
+    
     myController.text = jsonDecode(response)["contents"]["translated"];
   }
 
