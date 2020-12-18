@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
           Container(
             margin: EdgeInsets.all(20),
             child: Text(
-              "Morsapp is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
+              "Morsey is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
               style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 32),
               textAlign: TextAlign.center,
             ),

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-// import '../services/api.dart';
+import '../services/api.dart';
 import 'package:clipboard_manager/clipboard_manager.dart';
 import 'package:share/share.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:convert';
 
 class MorseToEng extends StatefulWidget {
   @override
@@ -10,19 +11,17 @@ class MorseToEng extends StatefulWidget {
 }
 
 class _MorseToEngState extends State<MorseToEng> {
+  final GetData object = new GetData();
   String inputText = "";
   final myController = TextEditingController();
-  var url =
-      "http://api.funtranslations.com/translate/morse2english.json?text=--%20---%20.-.%20...%20.%20%20%20%20%20-.-.%20---%20-..%20.%20%20%20%20%20..%20...%20%20%20%20%20.-%20%20%20%20%20-..%20..%20-%20%20%20%20%20.-%20-.%20-..%20%20%20%20%20-..%20.-%20....%20";
+  final inputController = TextEditingController();
 
-  @override
-  void initState() {
-    // final apiCaller = GetData();
-    // var response = apiCaller.getData(url);
-    // print(response);
-    // var decodedResponse = jsonDecode(response)['contents']['translated'];
-    // print(decodedResponse.toString());
-    super.initState();
+  void translateToEnglish() async {
+    var url =
+        "http://api.funtranslations.com/translate/morse2english.json?text=" +
+            inputController.text;
+    var response = await object.getData(url);
+    myController.text = jsonDecode(response)['contents']['translated'];
   }
 
   Widget build(BuildContext context) {
@@ -33,22 +32,19 @@ class _MorseToEngState extends State<MorseToEng> {
           children: [
             Container(
               padding: EdgeInsets.all(50),
-              // height: MediaQuery.of(context).size.height / 8,
               child: Text(
                 "Translate from Morse to English",
                 textAlign: TextAlign.center,
                 style:
                     GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 42),
-                // style: TextStyle(
-                //   fontSize: 30,
-                //   color: Color(0xFF442C2E),
-                // ),
               ),
             ),
             Container(
               margin: EdgeInsets.all(15),
               child: TextField(
-                maxLines: 8,
+                style: TextStyle(fontSize: 22),
+                controller: inputController,
+                maxLines: 6,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(
                     fontSize: 18,
@@ -68,15 +64,14 @@ class _MorseToEngState extends State<MorseToEng> {
               ),
             ),
             RaisedButton(
-              onPressed: () {},
+              onPressed: () {
+                translateToEnglish();
+                FocusManager.instance.primaryFocus.unfocus();
+              },
               child: Text(
-                "Decode!",
+                "Decode",
                 style:
                     GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
-                // style: TextStyle(
-                //   fontSize: 22,
-                //   color: Color(0xFF442C2E),
-                // ),
               ),
               color: Color(0xFFFEDBD0),
               shape: RoundedRectangleBorder(
@@ -89,8 +84,9 @@ class _MorseToEngState extends State<MorseToEng> {
             Container(
               margin: EdgeInsets.all(15),
               child: TextField(
+                style: TextStyle(fontSize: 22),
                 controller: myController,
-                maxLines: 8,
+                maxLines: 6,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(
                     fontSize: 18,
@@ -118,10 +114,6 @@ class _MorseToEngState extends State<MorseToEng> {
                 "Copy",
                 style:
                     GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
-                // style: TextStyle(
-                //   fontSize: 22,
-                //   color: Color(0xFF442C2E),
-                // ),
               ),
               color: Color(0xFFFEDBD0),
               shape: RoundedRectangleBorder(
@@ -132,11 +124,9 @@ class _MorseToEngState extends State<MorseToEng> {
               height: 50,
             ),
             Row(
-              // mainAxisSize: MainAxisSize.values[0],
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Container(
-                  // padding: EdgeInsets.fromLTRB(300, 90, 5, 20),
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.pop(context);
@@ -145,10 +135,6 @@ class _MorseToEngState extends State<MorseToEng> {
                       "Back",
                       style: GoogleFonts.allan(
                           color: Color(0xFF442C2E), fontSize: 34),
-                      // style: TextStyle(
-                      //   fontSize: 22,
-                      //   color: Color(0xFF442C2E),
-                      // ),
                     ),
                     color: Color(0xFFFEDBD0),
                     shape: RoundedRectangleBorder(
@@ -157,11 +143,13 @@ class _MorseToEngState extends State<MorseToEng> {
                   ),
                 ),
                 Container(
-                  // padding: EdgeInsets.fromLTRB(300, 90, 5, 20),
                   child: RaisedButton(
                     onPressed: () {
-                      if (inputText.isEmpty) {
-                        throw ErrorDescription("Cannot share null message");
+                      if (inputText == "") {
+                        inputText = myController.text;
+                        ClipboardManager.copyToClipBoard(myController.text);
+                        myController.text = "Message copied to clipboard!";
+                        Share.share(inputText);
                       } else {
                         Share.share(inputText);
                       }
@@ -170,10 +158,6 @@ class _MorseToEngState extends State<MorseToEng> {
                       "Share",
                       style: GoogleFonts.allan(
                           color: Color(0xFF442C2E), fontSize: 34),
-                      // style: TextStyle(
-                      //   fontSize: 22,
-                      //   color: Color(0xFF442C2E),
-                      // ),
                     ),
                     color: Color(0xFFFEDBD0),
                     shape: RoundedRectangleBorder(
