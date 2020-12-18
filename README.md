@@ -11,9 +11,6 @@
 # Demo
 
 ![gif](https://github.com/shantanugodbole/Morsey/blob/main/morse_translator/images/demo.gif)
-![](https://github.com/shantanugodbole/Morsey/blob/main/morse_translator/images/mainpage.jpg)
-![](https://github.com/shantanugodbole/Morsey/blob/main/morse_translator/images/engtomorse.jpg)
-![](https://github.com/shantanugodbole/Morsey/blob/main/morse_translator/images/morsetoeng.jpg)
 
 # Installation Guide
 
