@@ -25,86 +25,100 @@ class _HomePageState extends State<HomePage> {
   //   super.initState();
   // }
 
+
   @override
   Widget build(BuildContext context) {
+  final screenHeight = MediaQuery.of(context).size.height;
+  final screenWidth = MediaQuery.of(context).size.width;
+ 
     return Material(
-        child: new Container(
-      color: Color(0xFFFEEAE6),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            height: MediaQuery.of(context).size.height / 4,
-            // padding: EdgeInsets.all(20),
-            alignment: Alignment.center,
-            child: Text(
-              "Morsey",
-              style: GoogleFonts.permanentMarker(
-                  color: Color(0xFF442C2E),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 72),
-            ),
-          ),
-          Container(
-            // height: MediaQuery.of(context).size.height/4,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 100),
-            child: Text(
-              "Share information secretly!",
-              style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 40),
-              // style: TextStyle(
-              //   fontSize: 32,
-              //   color: Color(0xFF442C2E),
-              // ),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.all(20),
-            child: Text(
-              "Morsey is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
-              style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 32),
-              textAlign: TextAlign.center,
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height / 8,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        color: Color(0xFFFEEAE6),
+        child: new SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: Color(0xFFFEDBD0),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EngToMorse()));
-                },
+              Container(
+                margin: EdgeInsets.only(top: screenHeight/15),
+                height: screenHeight / 4,
+                // padding: EdgeInsets.all(20),
+                alignment: Alignment.center,
                 child: Text(
-                  "English -> Morse",
-                  style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 28),
+                  "Morsey",
+                  style: GoogleFonts.permanentMarker(
+                      color: Color(0xFF442C2E),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 72),
+                ),
+              ),
+              Container(
+                // height: MediaQuery.of(context).size.height/4,
+                alignment: Alignment.center,
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 70),
+                child: Text(
+                  "Share information secretly!",
+                  style:
+                      GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 30),
+                  // style: TextStyle(
+                  //   fontSize: 32,
+                  //   color: Color(0xFF442C2E),
+                  // ),
                   textAlign: TextAlign.center,
                 ),
               ),
-              RaisedButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)),
-                color: Color(0xFFFEDBD0),
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MorseToEng()));
-                },
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 child: Text(
-                  "Morse -> English",
-                  style: GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 28),
+                  "Morsey is a Morse code translator which helps you to convert secret messages into code and then share it with your friends",
+                  style:
+                      GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 25),
                   textAlign: TextAlign.center,
                 ),
-              )
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 8,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Color(0xFFFEDBD0),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => EngToMorse()));
+                    },
+                    child: Text(
+                      "English -> Morse",
+                      style: GoogleFonts.allan(
+                          color: Color(0xFF442C2E), fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  MaterialButton(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20)),
+                    color: Color(0xFFFEDBD0),
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => MorseToEng()));
+                    },
+                    child: Text(
+                      "Morse -> English",
+                      style: GoogleFonts.allan(
+                          color: Color(0xFF442C2E), fontSize: 18),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                ],
+              ),
             ],
           ),
-        ],
-      ),
-    ));
+        ));
   }
 }

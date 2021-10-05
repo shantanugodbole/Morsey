@@ -27,7 +27,7 @@ class _MorseToEngState extends State<MorseToEng> {
   Widget build(BuildContext context) {
     return Material(
       color: Color(0xFFFEEAE6),
-      child: new Container(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             Container(
@@ -40,14 +40,14 @@ class _MorseToEngState extends State<MorseToEng> {
               ),
             ),
             Container(
-              margin: EdgeInsets.all(15),
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: TextField(
-                style: TextStyle(fontSize: 22),
+                style: TextStyle(fontSize: 16),
                 controller: inputController,
                 maxLines: 6,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                   hintText: "Enter the coded message!",
                   filled: true,
@@ -63,33 +63,36 @@ class _MorseToEngState extends State<MorseToEng> {
                 // cursorRadius: Radius.circular(20),
               ),
             ),
-            RaisedButton(
-              onPressed: () {
-                translateToEnglish();
-                FocusManager.instance.primaryFocus.unfocus();
-              },
-              child: Text(
-                "Decode",
-                style:
-                    GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
-              ),
-              color: Color(0xFFFEDBD0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              child: MaterialButton(
+                onPressed: () {
+                  translateToEnglish();
+                  FocusManager.instance.primaryFocus.unfocus();
+                },
+                child: Text(
+                  "Decode",
+                  style:
+                      GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 22),
+                ),
+                color: Color(0xFFFEDBD0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
             ),
             SizedBox(
               height: 25,
             ),
             Container(
-              margin: EdgeInsets.all(15),
+              margin: EdgeInsets.symmetric(horizontal: 15, vertical: 5),
               child: TextField(
-                style: TextStyle(fontSize: 22),
+                style: TextStyle(fontSize: 16),
                 controller: myController,
                 maxLines: 6,
                 decoration: InputDecoration(
                   hintStyle: TextStyle(
-                    fontSize: 18,
+                    fontSize: 16,
                   ),
                   hintText: "Decoded message will appear here",
                   filled: true,
@@ -104,68 +107,74 @@ class _MorseToEngState extends State<MorseToEng> {
                 cursorColor: Colors.brown,
               ),
             ),
-            RaisedButton(
-              onPressed: () {
-                inputText = myController.text;
-                ClipboardManager.copyToClipBoard(myController.text);
-                myController.text = "Message copied to clipboard!";
-              },
-              child: Text(
-                "Copy",
-                style:
-                    GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 34),
-              ),
-              color: Color(0xFFFEDBD0),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15.0),
+              child: MaterialButton(
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                onPressed: () {
+                  inputText = myController.text;
+                  ClipboardManager.copyToClipBoard(myController.text);
+                  myController.text = "Message copied to clipboard!";
+                },
+                child: Text(
+                  "Copy",
+                  style:
+                      GoogleFonts.allan(color: Color(0xFF442C2E), fontSize: 22),
+                ),
+                color: Color(0xFFFEDBD0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                ),
               ),
             ),
-            SizedBox(
-              height: 50,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Container(
-                  child: RaisedButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: Text(
-                      "Back",
-                      style: GoogleFonts.allan(
-                          color: Color(0xFF442C2E), fontSize: 34),
-                    ),
-                    color: Color(0xFFFEDBD0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                Container(
-                  child: RaisedButton(
-                    onPressed: () {
-                      if (inputText == "") {
-                        inputText = myController.text;
-                        ClipboardManager.copyToClipBoard(myController.text);
-                        myController.text = "Message copied to clipboard!";
-                        Share.share(inputText);
-                      } else {
-                        Share.share(inputText);
-                      }
-                    },
-                    child: Text(
-                      "Share",
-                      style: GoogleFonts.allan(
-                          color: Color(0xFF442C2E), fontSize: 34),
-                    ),
-                    color: Color(0xFFFEDBD0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Container(
+                    child: MaterialButton(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: Text(
+                        "Back",
+                        style: GoogleFonts.allan(
+                            color: Color(0xFF442C2E), fontSize: 22),
+                      ),
+                      color: Color(0xFFFEDBD0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  Container(
+                    child: MaterialButton(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      onPressed: () {
+                        if (inputText == "") {
+                          inputText = myController.text;
+                          ClipboardManager.copyToClipBoard(myController.text);
+                          myController.text = "Message copied to clipboard!";
+                          Share.share(inputText);
+                        } else {
+                          Share.share(inputText);
+                        }
+                      },
+                      child: Text(
+                        "Share",
+                        style: GoogleFonts.allan(
+                            color: Color(0xFF442C2E), fontSize: 22),
+                      ),
+                      color: Color(0xFFFEDBD0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
